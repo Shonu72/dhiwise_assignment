@@ -5,7 +5,11 @@ import 'package:percent_indicator/circular_percent_indicator.dart';
 class CircleIndicator extends StatelessWidget {
   final double percentage;
   final String text;
-  CircleIndicator({super.key, required this.percentage, required this.text, });
+  CircleIndicator({
+    super.key,
+    required this.percentage,
+    required this.text,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +22,7 @@ class CircleIndicator extends StatelessWidget {
             radius: 100.0, //radius for circle
             lineWidth: 5.0, //width of circle line
             animation: true,
+            animationDuration: 2000,
             arcType: ArcType.FULL,
             arcBackgroundColor: Colors.grey,
             percent: percentage,
@@ -32,11 +37,14 @@ class CircleIndicator extends StatelessWidget {
                 const SizedBox(
                   height: 5.0,
                 ),
-                Text( text, style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20.0,
-                  color: Colors.white,
-                ),),
+                Text(
+                  text,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20.0,
+                    color: Colors.white,
+                  ),
+                ),
                 Text(
                   "You saved",
                   style: TextStyle(

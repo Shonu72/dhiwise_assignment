@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:finance/history_page.dart';
 import 'package:finance/widgets/bottom_nav.dart';
 import 'package:finance/widgets/circle_widget.dart';
 import 'package:finance/widgets/dots_widget.dart';
@@ -39,7 +40,7 @@ class _FinanceAppState extends State<FinanceApp>
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 2),
+      duration: Duration(seconds: 15),
     );
     _animation = CurvedAnimation(
       parent: _controller,
@@ -74,6 +75,8 @@ class _FinanceAppState extends State<FinanceApp>
   late double needyMoney = targetAmount - remainingAmount;
   late double monthlySavingProjection = remainingAmount / 12;
   late int monthlysaving = monthlySavingProjection.round();
+  late String amount =
+      goalData.entries.map((e) => e.value).toList()[1]["amount"].toString();
 
   @override
   Widget build(BuildContext context) {
@@ -179,7 +182,14 @@ class _FinanceAppState extends State<FinanceApp>
                             color: Colors.black,
                           ),
                           GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const HistoryPage(),
+                                ),
+                              );
+                            },
                             child: AppBlackText(
                               text: "Show History",
                               size: 16,
@@ -192,8 +202,10 @@ class _FinanceAppState extends State<FinanceApp>
                       const SizedBox(
                         height: 20,
                       ),
-                      Row(
-                        children: [LinearProgressBar()],
+                      const Row(
+                        children: [
+                          LinearProgressBar(),
+                        ],
                       ),
                       const SizedBox(
                         height: 20,
@@ -211,6 +223,9 @@ class _FinanceAppState extends State<FinanceApp>
                                   shape: BoxShape.circle,
                                 ),
                               ),
+                              const SizedBox(
+                                width: 10,
+                              ),
                               AppBlackText(
                                 text: "Monthly Salary",
                                 size: 16,
@@ -221,9 +236,9 @@ class _FinanceAppState extends State<FinanceApp>
                                 width: 100,
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(left: 40),
+                                padding: const EdgeInsets.only(left: 50),
                                 child: AppBlackText(
-                                  text: "\$15,000",
+                                  text: "\$$amount",
                                   size: 16,
                                   color: Colors.black,
                                   fontWeight: FontWeight.normal,
@@ -249,6 +264,9 @@ class _FinanceAppState extends State<FinanceApp>
                                   shape: BoxShape.circle,
                                 ),
                               ),
+                              const SizedBox(
+                                width: 10,
+                              ),
                               AppBlackText(
                                 text: "Monthly Salary",
                                 size: 16,
@@ -261,7 +279,7 @@ class _FinanceAppState extends State<FinanceApp>
                               Padding(
                                 padding: const EdgeInsets.only(left: 50),
                                 child: AppBlackText(
-                                  text: "\$7000",
+                                  text: "\$$amount",
                                   size: 16,
                                   color: Colors.black,
                                   fontWeight: FontWeight.normal,
@@ -287,6 +305,9 @@ class _FinanceAppState extends State<FinanceApp>
                                   shape: BoxShape.circle,
                                 ),
                               ),
+                              const SizedBox(
+                                width: 10,
+                              ),
                               AppBlackText(
                                 text: "Monthly Salary",
                                 size: 16,
@@ -299,7 +320,7 @@ class _FinanceAppState extends State<FinanceApp>
                               Padding(
                                 padding: const EdgeInsets.only(left: 50),
                                 child: AppBlackText(
-                                  text: "\$5000",
+                                  text: "\$$amount",
                                   size: 16,
                                   color: Colors.black,
                                   fontWeight: FontWeight.normal,

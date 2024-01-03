@@ -1,3 +1,5 @@
+import 'package:finance/finance.dart';
+import 'package:finance/history_page.dart';
 import 'package:flutter/material.dart';
 
 class BottomNavBar extends StatefulWidget {
@@ -9,12 +11,17 @@ class BottomNavBar extends StatefulWidget {
 
 class _BottomNavBarState extends State<BottomNavBar> {
   int _selectedIndex = 0;
-  static List<Widget> _widgetOptions = <Widget>[
-    Text('Item 1: Home'),
-    Text('Item 2: Business'),
-    Text('Item 3: School'),
-    Text('Item 3: School'),
-  ];
+  late List<Widget> _widgetOptions;
+  @override
+  void initState() {
+    super.initState();
+    _widgetOptions = <Widget>[
+      FinanceApp(),
+      HistoryPage(),
+      Text("demo"),
+      Text("demo")
+    ];
+  }
 
   void _onItemTapped(int index) {
     setState(() {
@@ -50,6 +57,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
       showUnselectedLabels: false,
       onTap: _onItemTapped,
       iconSize: 30,
+      type: BottomNavigationBarType.fixed,
     );
   }
 }
