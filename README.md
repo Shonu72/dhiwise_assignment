@@ -19,6 +19,15 @@ service cloud.firestore {
 }
 
 
+#demo video of task
+https://github.com/Shonu72/dhiwise_assignment/assets/67668844/95c854e5-35d6-4f2f-9f4b-2f785962db10
 
+#images of different screens
+![homepage](https://github.com/Shonu72/dhiwise_assignment/assets/67668844/f6613a59-970b-412f-8dad-9b353fbd04a4)
 
+![history](https://github.com/Shonu72/dhiwise_assignment/assets/67668844/50650b59-35ad-4aeb-aa5d-e3ad3ad292dd)
+
+![search](https://github.com/Shonu72/dhiwise_assignment/assets/67668844/0ad604f9-3f25-4a82-bdc5-08c2d4de3432)
+
+![profile](https://github.com/Shonu72/dhiwise_assignment/assets/67668844/417420e6-2a77-491e-bb5c-cedd269e3f25)
 
