@@ -20,18 +20,18 @@ service cloud.firestore {
 
 
 #demo video of the task
-https://github.com/Shonu72/dhiwise_assignment/assets/67668844/95c854e5-35d6-4f2f-9f4b-2f785962db10
+https://github.com/Shonu72/dhiwise_assignment/blob/main/lib/Images/dhiwise_task.mp4
 
 #images of different screens
 
 <p align="left">
-  <img src="https://github.com/Shonu72/dhiwise_assignment/blob/main/lib/Images/homepage.png"  width="200" height="400" />
+  <img src="https://github.com/Shonu72/dhiwise_assignment/blob/main/lib/Images/homepage.png"  width="200" height="500" />
   &nbsp 
-  <img src="https://github.com/Shonu72/dhiwise_assignment/blob/main/lib/Images/history.png"   width="200" height="400" />
+  <img src="https://github.com/Shonu72/dhiwise_assignment/blob/main/lib/Images/history.png"   width="200" height="500" />
     &nbsp 
-  <img src="https://github.com/Shonu72/dhiwise_assignment/blob/main/lib/Images/profile.png"   width="200" height="400" />
+  <img src="https://github.com/Shonu72/dhiwise_assignment/blob/main/lib/Images/profile.png"   width="200" height="500" />
     &nbsp 
-  <img src="https://github.com/Shonu72/dhiwise_assignment/blob/main/lib/Images/search.png"   width="200" height="400" />
+  <img src="https://github.com/Shonu72/dhiwise_assignment/blob/main/lib/Images/search.png"   width="200" height="500" />
 
 
 
