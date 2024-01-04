@@ -25,7 +25,7 @@ Future<Map<String, dynamic>> fetchGoalData() async {
 }
 
 class _HistoryPageState extends State<HistoryPage> {
-  late Map<String, dynamic> goalData;
+  late Map<String, dynamic>? goalData = {};
 
   @override
   void initState() {
@@ -37,15 +37,19 @@ class _HistoryPageState extends State<HistoryPage> {
     });
   }
 
-  late String amount =
-      goalData.entries.map((e) => e.value).toList()[1]["amount"].toString();
-  late String date =
-      goalData.entries.map((e) => e.value).toList()[1]["date"].toString();
-  late String salary =
-      goalData.entries.map((e) => e.value).toList()[1]["salary"].toString();
-
   @override
   Widget build(BuildContext context) {
+    if (goalData == null || goalData!.isEmpty || goalData!.length < 2) {
+      return Scaffold(
+        body: Center(
+          child: CircularProgressIndicator(),
+        ),
+      );
+    }
+    String amount = goalData!.entries.map((e) => e.value).toList()[1]["amount"];
+    String date = goalData!.entries.map((e) => e.value).toList()[1]["date"];
+    String salary = goalData!.entries.map((e) => e.value).toList()[1]["salary"];
+
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 86, 45, 199),
       appBar: AppBar(

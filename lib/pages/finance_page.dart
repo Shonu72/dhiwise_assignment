@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:finance/history_page.dart';
-import 'package:finance/widgets/bottom_nav.dart';
+import 'package:finance/pages/history_page.dart';
+import 'package:finance/widgets/history_widget.dart';
 import 'package:finance/widgets/circle_widget.dart';
 import 'package:finance/widgets/dots_widget.dart';
 import 'package:finance/widgets/linear_graph.dart';
@@ -33,14 +33,14 @@ class _FinanceAppState extends State<FinanceApp>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
-  late Map<String, dynamic> goalData;
+  late Map<String, dynamic>? goalData;
 
   @override
   void initState() {
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 15),
+      duration: const Duration(seconds: 15),
     );
     _animation = CurvedAnimation(
       parent: _controller,
@@ -62,24 +62,31 @@ class _FinanceAppState extends State<FinanceApp>
     super.dispose();
   }
 
-  late int restAmount = goalData['currentAmount'];
-  late double totalSaved = restAmount.toDouble();
-
-  late int target = goalData['totalAmount'] ?? 0;
-  late double targetAmount = target.toDouble();
-  // late double totalSaved = 2545;
-  // late double targetAmount = 5000;
-  late int goalAmount = targetAmount.round();
-  late double remainingAmount = targetAmount - totalSaved;
-  late double progressPercentage = ((totalSaved / targetAmount) * 100) / 100;
-  late double needyMoney = targetAmount - remainingAmount;
-  late double monthlySavingProjection = remainingAmount / 12;
-  late int monthlysaving = monthlySavingProjection.round();
-  late String amount =
-      goalData.entries.map((e) => e.value).toList()[1]["amount"].toString();
-
   @override
   Widget build(BuildContext context) {
+    if (goalData == null) {
+      return const Scaffold(
+        body: Center(
+          child: CircularProgressIndicator(),
+        ),
+      );
+    }
+    int restAmount = goalData!['currentAmount'];
+    double totalSaved = restAmount.toDouble();
+
+    int target = goalData!['totalAmount'] ?? 0;
+    double targetAmount = target.toDouble();
+    int goalAmount = targetAmount.round();
+    double remainingAmount = targetAmount - totalSaved;
+    double progressPercentage = ((totalSaved / targetAmount) * 100) / 100;
+    double needyMoney = targetAmount - remainingAmount;
+    double monthlySavingProjection = remainingAmount / 12;
+    int monthlysaving = monthlySavingProjection.round();
+    String amount =
+        goalData!.entries.map((e) => e.value).toList()[1]["amount"].toString();
+    int amountInt = int.parse(amount);
+    double progressLinear = ((amountInt / remainingAmount) * 100) / 100;
+
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 86, 45, 199),
       // appBar: AppBar(),
@@ -89,7 +96,7 @@ class _FinanceAppState extends State<FinanceApp>
         height: double.maxFinite,
         child: Column(
           children: [
-            AppText(text: goalData["goalName"], size: 30),
+            AppText(text: goalData!["goalName"], size: 30),
             const SizedBox(
               height: 20,
             ),
@@ -130,7 +137,7 @@ class _FinanceAppState extends State<FinanceApp>
               margin: const EdgeInsets.only(left: 20, right: 20),
               height: 100,
               decoration: BoxDecoration(
-                color: Color.fromARGB(255, 53, 114, 219),
+                color: const Color.fromARGB(255, 53, 114, 219),
                 borderRadius: BorderRadius.circular(6),
               ),
               child: Padding(
@@ -202,140 +209,28 @@ class _FinanceAppState extends State<FinanceApp>
                       const SizedBox(
                         height: 20,
                       ),
-                      const Row(
+                      Row(
                         children: [
-                          LinearProgressBar(),
+                          LinearProgressBar(percentage: progressLinear),
                         ],
                       ),
                       const SizedBox(
                         height: 20,
                       ),
-                      Column(
-                        children: [
-                          Row(
-                            children: [
-                              Container(
-                                margin: const EdgeInsets.all(5),
-                                width: 10,
-                                height: 10,
-                                decoration: const BoxDecoration(
-                                  color: Colors.blue,
-                                  shape: BoxShape.circle,
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              AppBlackText(
-                                text: "Monthly Salary",
-                                size: 16,
-                                color: Colors.black,
-                                fontWeight: FontWeight.normal,
-                              ),
-                              const SizedBox(
-                                width: 100,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 50),
-                                child: AppBlackText(
-                                  text: "\$$amount",
-                                  size: 16,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.normal,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
+                      HistoryWidget(amount: "\$$amount"),
                       const SizedBox(
                         height: 10,
                       ),
-                      Column(
-                        children: [
-                          Row(
-                            children: [
-                              Container(
-                                margin: const EdgeInsets.all(5),
-                                width: 10,
-                                height: 10,
-                                decoration: const BoxDecoration(
-                                  color: Colors.amber,
-                                  shape: BoxShape.circle,
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              AppBlackText(
-                                text: "Monthly Salary",
-                                size: 16,
-                                color: Colors.black,
-                                fontWeight: FontWeight.normal,
-                              ),
-                              const SizedBox(
-                                width: 100,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 50),
-                                child: AppBlackText(
-                                  text: "\$$amount",
-                                  size: 16,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.normal,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
+                      HistoryWidget(amount: "\$$amount"),
                       const SizedBox(
                         height: 10,
                       ),
-                      Column(
-                        children: [
-                          Row(
-                            children: [
-                              Container(
-                                margin: const EdgeInsets.all(5),
-                                width: 10,
-                                height: 10,
-                                decoration: const BoxDecoration(
-                                  color: Colors.green,
-                                  shape: BoxShape.circle,
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              AppBlackText(
-                                text: "Monthly Salary",
-                                size: 16,
-                                color: Colors.black,
-                                fontWeight: FontWeight.normal,
-                              ),
-                              const SizedBox(
-                                width: 100,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 50),
-                                child: AppBlackText(
-                                  text: "\$$amount",
-                                  size: 16,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.normal,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
+                      HistoryWidget(amount: "\$$amount"),
                     ],
                   ),
                 ),
               ),
             ),
-            BottomNavBar(),
           ],
         ),
       ),
