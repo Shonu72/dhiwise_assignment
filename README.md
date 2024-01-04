@@ -18,9 +18,12 @@ service cloud.firestore {
   }
 }
 
+#demo video link 
+https://drive.google.com/file/d/1upXqRjPWivVd7r4STyVrRJeaK5ahMmDA/view?usp=sharing
 
-#demo video of the task
-![Video Demo](https://github.com/Shonu72/dhiwise_assignment/blob/main/lib/Images/dhiwise_task.mp4)
+#demo video of the task 
+https://github.com/Shonu72/dhiwise_assignment/assets/67668844/b1224330-0561-4772-8bfa-91e3a8c616e8
+
 
 #images of different screens
 
