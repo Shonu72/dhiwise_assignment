@@ -20,7 +20,7 @@ service cloud.firestore {
 
 
 #demo video of the task
-https://github.com/Shonu72/dhiwise_assignment/blob/main/lib/Images/dhiwise_task.mp4
+![Video Demo](https://github.com/Shonu72/dhiwise_assignment/blob/main/lib/Images/dhiwise_task.mp4)
 
 #images of different screens
 
