@@ -18,6 +18,10 @@ service cloud.firestore {
   }
 }
 
+
+#database 
+![image](https://github.com/Shonu72/dhiwise_assignment/assets/67668844/f4d8700f-c8d2-4690-82ea-8fda46cd5fca)
+
 #demo video link 
 https://drive.google.com/file/d/1upXqRjPWivVd7r4STyVrRJeaK5ahMmDA/view?usp=sharing
 
